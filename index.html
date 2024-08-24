@@ -52,8 +52,8 @@
 
         // get a MediaStream from the user's webcam & mic
         const media = await navigator.mediaDevices.getUserMedia({
-            // audio: true,
-            video: true,
+            audio: true,
+            // video: true,
         });
         // show the local feed
         localVideo.srcObject = media;
