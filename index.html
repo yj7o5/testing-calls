@@ -46,9 +46,9 @@
 
         const shareBtn = document.querySelector("button#share")
 
-        const url = new URLSearchParams(window.location.href)
-        const trackId = url.get("trackId")
-        const sessionId = url.get("sessionId")
+        const urlParams = new URLSearchParams(window.location.search)
+        const trackId = urlParams.get("trackId")
+        const sessionId = urlParams.get("sessionId")
 
         // get a MediaStream from the user's webcam & mic
         const media = await navigator.mediaDevices.getUserMedia({
