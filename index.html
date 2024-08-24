@@ -68,7 +68,7 @@
             // connection using the addTransceiver API which allows us to specify the direction
             const transceivers = media.getTracks().map((track) =>
                 localSession.peerConnection.addTransceiver(track, {
-                    direction: "sendonly",
+                    direction: "sendrecv",
                 }),
             );
 
