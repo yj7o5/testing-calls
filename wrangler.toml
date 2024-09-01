@@ -1,0 +1,8 @@
+name = "testing-calls"
+type = "typescript"
+account_id = "6812ece8e131440c8c072b026dbdc742"
+compatibility_date = "2024-08-22"
+
+kv_namespaces = [
+    { binding = "ROOMSKV", id = "758aa7207340402e87474cf512bad33b", preview_id = "a675ae33f19a4845a116e6c3afbb5ba7" }
+]

@@ -1,5 +1,14 @@
 {
+    "version": "1.0.0",
+    "main": "src/index.ts",
+    "dependencies": {
+        "@cloudflare/workers-types": "4.20240821.1",
+        "typescript": "^5.0.0",
+        "wrangler": "^3.0.0"
+    },
     "scripts": {
-        "build": "echo \"hello\""
+        "build": "tsc",
+        "start": "wrangler dev",
+        "deploy": "wrangler publish"
     }
 }

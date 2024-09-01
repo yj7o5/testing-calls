@@ -11,7 +11,13 @@
 </head>
 
 <body>
-    <button id="share">Share</button>
+    <button id="route-1">route 1</button>
+    <button id="route-2">route 2</button>
+    <button id="route-3">route 3</button>
+
+    <video id="local" autoplay playsinline></video>
+    <video id="remote" autoplay playsinline></video>
+    <!-- <button id="share">Share</button>
     <div class="grid">
         <h1>Calls Echo Demo</h1>
         <div>
@@ -22,7 +28,7 @@
             <h2>Remote echo stream</h2>
             <video id="remote" autoplay playsinline></video>
         </div>
-    </div>
+    </div> -->
 
     <script type="module">
         // This is the App ID from the dashboard that identifies this Calls Application.
@@ -46,6 +52,11 @@
 
         const shareBtn = document.querySelector("button#share")
 
+        async function main() {
+            await joinRoom("room-1", "abc", "def")
+        }
+
+        /*
         const urlParams = new URLSearchParams(window.location.search)
         const trackId = urlParams.get("trackId")
         const sessionId = urlParams.get("sessionId")
@@ -57,7 +68,9 @@
         });
         // show the local feed
         localVideo.srcObject = media;
+        */
 
+        /*
         if (!sessionId && !trackId) {
             // First, we'll establish the "local" Calls session by calling createCallsSession
             // which is defined towards the bottom of this script. This will create an
@@ -217,6 +230,7 @@
             remoteVideo.srcObject = remoteVideoStream;
             pulledTracks.forEach((t) => remoteVideoStream.addTrack(t));
         }
+        */
 
         // ===============================================================
         // THE END — below is the createCallsSession function used above.
@@ -285,6 +299,38 @@
                 sessionId,
             };
         }
+
+        async function joinRoom(roomId, trackId, sessionId) {
+            const url = '/join';
+            const requestBody = {
+                roomId: roomId,
+                trackId: trackId,
+                sessionId: sessionId,
+            };
+
+            try {
+                const response = await fetch('/join', {
+                    method: 'POST', // Use POST to send data
+                    headers: {
+                        'Content-Type': 'application/json', // Send JSON data
+                    },
+                    body: JSON.stringify(requestBody), // Convert JS object to JSON string
+                });
+
+                if (!response.ok) {
+                    throw new Error(`Error: ${response.statusText}`);
+                }
+
+                const responseData = await response.json();
+                console.log('Response:', responseData);
+
+                return responseData; // Return the response data if needed
+            } catch (error) {
+                console.error('Error:', error);
+            }
+        }
+
+        main()
     </script>
     <style>
         /* Styles are safe to ignore, just here for demo */
